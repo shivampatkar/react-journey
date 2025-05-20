@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDom from "react-dom/client";
+import "./index.css";
 
 const pizzaData = [
   {
@@ -46,26 +47,42 @@ const pizzaData = [
   },
 ];
 
-
 function App() {
-  return <div>
-    <Header />
-    <Menu />
-    <Footer />
-  </div>
+  return (
+    <div className="container">
+      <Header />
+      <Menu />
+      <Footer />
+    </div>
+  );
 }
 
 function Header() {
-  return <h1>Fast React Pizza Company</h1>
+  // return <h1 style={{color:"red", textSize:"60px"}}>Fast React Pizza Company</h1>;
+  return (
+    <header className="header">
+      <h1>Fast React Pizza Company</h1>;
+    </header>
+  );
 }
 
 function Menu() {
   return (
-   <div>
+    <main className="menu">
       <h2>Our Menu</h2>
-      <Pizza />
-      <Pizza />
-   </div>
+      <Pizza
+        name="Pizza Mozeralla"
+        ingredients="mozeralla cheese"
+        photoName="pizzas/margherita.jpg"
+        price="50"
+      />
+      <Pizza
+        name="Pizza Prosciutto"
+        ingredients="Tomato, mozarella, ham, aragula, and burrata cheese"
+        photoName="pizzas/prosciutto.jpg"
+        price="18"
+      />
+    </main>
   );
 }
 
@@ -74,24 +91,23 @@ function Footer() {
   const openHour = 12;
   const closeHour = 22;
 
-if (hour >= openHour && hour <= closeHour) alert("We're currently open!");
-else alert("Sorry we're closed");
+  const isOpen = hour >= openHour && hour <= closeHour;
+  console.log(isOpen);
   return (
-    <div>
-      
-
+    <div className="footer">
       <footer>We're Currently Open</footer>
     </div>
   );
 }
 
-
-function Pizza() {
+function Pizza(props) {
+  console.log(props);
   return (
-    <div>
-      <img src="pizzas/margherita.jpg" alt="margherita pizza" />
-      <h2>Pizza Mozarella</h2>
-      <p>Tomato and mozarella</p>
+    <div className="pizza">
+      <img src={props.photoName} alt="margherita pizza" />
+      <h2>{props.name}</h2>
+      <p>{props.ingredients}</p>
+      <span>{props.price}</span>
     </div>
   );
 }
@@ -106,4 +122,3 @@ root.render(
 
 // React before 18
 // React.render(<App />);
-
