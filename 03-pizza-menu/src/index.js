@@ -70,7 +70,17 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <Pizza
+
+      <ul className="pizzas">
+        {
+          pizzaData.map((pizza) => ( 
+            <Pizza pizzaObject={pizza}/>            
+          ))
+        }
+      </ul>
+
+
+      {/* <Pizza
         name="Pizza Mozeralla"
         ingredients="mozeralla cheese"
         photoName="pizzas/margherita.jpg"
@@ -81,7 +91,7 @@ function Menu() {
         ingredients="Tomato, mozarella, ham, aragula, and burrata cheese"
         photoName="pizzas/prosciutto.jpg"
         price="18"
-      />
+      /> */}
     </main>
   );
 }
@@ -92,7 +102,7 @@ function Footer() {
   const closeHour = 22;
 
   const isOpen = hour >= openHour && hour <= closeHour;
-  console.log(isOpen);
+  // console.log(isOpen);
   return (
     <div className="footer">
       <footer>We're Currently Open</footer>
@@ -103,12 +113,12 @@ function Footer() {
 function Pizza(props) {
   console.log(props);
   return (
-    <div className="pizza">
-      <img src={props.photoName} alt="margherita pizza" />
-      <h2>{props.name}</h2>
-      <p>{props.ingredients}</p>
-      <span>{props.price}</span>
-    </div>
+    <li className="pizza">
+      <img src={props.pizzaObject.photoName} alt="margherita pizza" />
+      <h2>{props.pizzaObject.name}</h2>
+      <p>{props.pizzaObject.ingredients}</p>
+      <span>{props.pizzaObject.price}</span>
+    </li>
   );
 }
 
